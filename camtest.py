@@ -18,7 +18,7 @@ camera = PiCamera()
 
 camera.resolution = (reWidth, reHeight)        # framerate = 1-30 olmalı 
 camera.framerate = 30
-camera.rotation = 270
+camera.rotation = 90
 camera.brightness = 50                   # Işık
 camera.sharpness = 100                   # Keskinlik
 camera.iso = 100                         # Gün ışığında 100-200 , düşük ışıkta 400-800
@@ -41,6 +41,7 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
         # grab the raw NumPy array representing the image, then initialize the timestamp
         # and occupied/unoccupied text
         image = frame.array
+        
         image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
         image = cv2.bilateralFilter(image, 10, 10, 10)
         image = cv2.adaptiveThreshold(image, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 15, 3)
@@ -59,7 +60,7 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
             x, y, w, h = cv2.boundingRect(ctr)
              
             #if (w > 300 and w < 1500  and h > 100 and h < 800):  # for 1920x1080          
-            if (w > 200 and w < 1100  and h > 50 and h < 600):    # for 1280x720
+            if (w > 150 and w < 1100  and h > 50 and h < 600):    # for 1280x720
                 # Getting ROI
                 roi = image[y:y+h, x:x+w]
                     

@@ -16,7 +16,7 @@ FONT = cv2.FONT_HERSHEY_SIMPLEX
 camera = PiCamera()
 camera.resolution = (reWidth, reHeight)		# framerate = 1-30 olmalı 
 camera.framerate = 20                    	
-camera.rotation = 270
+camera.rotation = 90
 camera.brightness = 55                 		# Işık
 camera.sharpness = 100                   	# Keskinlik
 camera.iso = 100                         	# Gün ışığında 100-200 , düşük ışıkta 400-800
