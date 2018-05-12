@@ -44,6 +44,12 @@ def Filtered(imgsrc):
 	image = cv2.imread(imgsrc)
 	imageorg = cv2.imread(imgsrc)
 
+	#x, y, w, h = 50,50,870,650
+	x, y, w, h = 0,0,1024,768
+	cv2.rectangle(image,(x,y),( x + w, y + h ),(0,255,0),1)
+		
+	image = image[y:y+h, x:x+w]
+
 	image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
 	#cv2.imshow("gray",image)
 
@@ -84,7 +90,7 @@ def Filtered(imgsrc):
 			 
 		#if (w > 100 and h > 50 and h < 1000):
 		#if (w > 300 and w < 1500  and h > 100 and h < 800):  # for 1920x1080          
-		if (w > 200 and w < 1100  and h > 50 and h < 600):    # for 1280x720
+		if (w > 150 and w < 1100  and h > 50 and h < 600):    # for 1280x720
 			counter += 1
 			
 			# Getting ROI

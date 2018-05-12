@@ -42,6 +42,17 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
         # and occupied/unoccupied text
         image = frame.array
         
+        x, y, w, h = 0,0,reWidth,reHeight
+        cv2.rectangle(image,(x,y),( x + w, y + h ),(0,255,0),1)
+        
+        cv2.imshow("my", image)
+        
+        roi = image[y:y+h, x:x+w]
+        
+        cv2.imshow("roi", roi)
+        
+        '''
+        
         image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
         image = cv2.bilateralFilter(image, 10, 10, 10)
         image = cv2.adaptiveThreshold(image, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 15, 3)
@@ -85,6 +96,9 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
         # show the frame
         cv2.moveWindow("Frame", 40,30)
         cv2.imshow("Frame", img_eroded)
+        
+        '''
+
         key = cv2.waitKey(1) & 0xFF
 
         # clear the stream in preparation for the next frame
@@ -93,3 +107,7 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
         # if the `q` key was pressed, break from the loop
         if key == ord("q"):
                 break
+
+
+cv2.moveWindow("my", 0,0)
+cv2.moveWindow("roi", 10,10)
